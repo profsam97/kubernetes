@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vprofileapp
+  label:
+    app: frontend
+    type: web
+spec:
+  containers:
+    - name: vrofilecontainer
+      image: imranvisualpath/freshtomapp:v7
+      ports:
+       - name: vproapp-port
+         containerPort: 8080

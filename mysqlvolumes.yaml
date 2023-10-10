@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysqlpod
+spec:
+  containers:
+    - image: mysql:5.7
+      name: mysql
+      volumeMounts:
+        - mountPath: /var/lib/mysql # where the container stores data
+          name: mysqlvol
+      env:
+        - name: MYSQL_ROOT_PASSWORD # what you will use to access env in the container
+          valueFrom:
+            configMapKeyRef:
+              name: game-demo  # references the name of the config map
+              key: mysql_root_password # the key where the value lies in the config map
+
+#      envFrom:
+#        - configMapRef:
+#            name: game-demo
+# the above 3 lines allows you to use all the env in the game-demo config map for you pods, though i believe its better to
+# use the one I didn't comment out
+  volumes:
+    - name: mysqlvol
+      hostPath:
+        # directory location on host
+        path: /data
+        # this field is optional
+        type: DirectoryOrCreate # this creates a dir called data if it doesn't exist before
