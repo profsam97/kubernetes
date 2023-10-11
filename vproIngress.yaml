@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vpro-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: kubevpro.cloudradar.online  # your port
+      http:
+        paths:
+          - path: /  # when the user visit the /route it finds for a service named my-app, and it runs on the specified port number on the service,
+            # you can check the nginx ingress controller doc for more info on host, and path
+            pathType: Prefix
+            backend:
+              service:
+                name: my-app
+                port:
+                  number: 8080
