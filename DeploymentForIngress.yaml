@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: my-app
-          image: imranvisualpath/vproappfix
+          image: 154114/vprofileapp
           ports:
             - containerPort: 8080
