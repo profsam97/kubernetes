@@ -12,3 +12,10 @@ spec:
       ports:
        - name: vproapp-port
          containerPort: 8080
+      resources:
+        requests:    # here, this means the container will only run if the node has atleast 64mb, if the node has less it will be pending
+          memory: "64Mi"
+          cpu: "250m"
+        limits: # here, we indicate this to ensure that the container does not exceed this limit.
+          memory: "128Mi"
+          cpu: "500m"

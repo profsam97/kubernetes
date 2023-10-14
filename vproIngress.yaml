@@ -7,11 +7,10 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: kubevpro.cloudradar.online  # your port
+    - host: myapp.mydomain.com
       http:
         paths:
-          - path: /  # when the user visit the /route it finds for a service named my-app, and it runs on the specified port number on the service,
-            # you can check the nginx ingress controller doc for more info on host, and path
+          - path: /
             pathType: Prefix
             backend:
               service:
